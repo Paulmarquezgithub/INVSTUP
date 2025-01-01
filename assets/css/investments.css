@@ -1,0 +1,137 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: linear-gradient(to right, #007bff, #0056b3);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the content */
+}
+
+header .logo img {
+    height: 60px;
+    
+  }
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .logo img {
+    max-width: 150px;
+    border-radius: 10px;
+  }
+  
+  .logo h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    margin: 0;
+}
+
+header nav ul li {
+    padding: 5px 10px; /* Ensure uniform padding around the links */
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+header nav ul li a:hover, header nav ul li a.active {
+    color: #ffcc00;
+    text-decoration: underline;
+}
+
+main {
+    padding: 40px 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+p {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.investment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 0 10px;
+}
+
+.investment-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.investment-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.investment-card h3 {
+    font-size: 1.5rem;
+    margin: 15px;
+}
+
+.investment-card p {
+    margin: 10px 15px;
+    font-size: 1rem;
+}
+
+.investment-card .btn {
+    display: block;
+    margin: 15px auto 20px;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.investment-card .btn:hover {
+    background: #0056b3;
+}
+
+.investment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}

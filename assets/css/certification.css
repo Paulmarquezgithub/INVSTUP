@@ -1,0 +1,181 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #007bff;
+    color: #fff;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center; /* Center the logo and nav */
+    align-items: center;
+
+}
+header .logo img {
+    height: 60px;
+
+   
+}
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  max-width: 150px;
+  border-radius: 10px;
+}
+
+.logo h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+header nav ul li a:hover, header nav ul li a.active {
+    color: #ffcc00;
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px 0;
+}
+
+/* Certification Banner */
+#certification-banner {
+    background: linear-gradient(to right, #0056b3, #007bff);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+#certification-banner h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+#certification-banner p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+#certification-banner .logo-container {
+    margin: 30px 0;
+}
+
+#certification-banner .certification-logo {
+    width: 150px;
+    margin: 0 auto;
+}
+
+#certification-banner .btn {
+    background: #ffcc00;
+    color: #007bff;
+    font-size: 18px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#certification-banner .btn:hover {
+    background: #e6b800;
+}
+
+/* Certification Overview */
+#certification-overview {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+#certification-overview ul {
+    list-style: disc;
+    margin: 20px 0;
+    padding-left: 40px;
+    display: inline-block;
+    text-align: left;
+}
+
+#certification-overview .button-container {
+    margin-top: 20px;
+}
+
+#certification-overview .btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#certification-overview .btn:hover {
+    background: #0056b3;
+}
+
+/* Certification Benefits Section */
+.centered {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 0 15px;
+}
+
+.benefit-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: scale(1.05);
+}
+
+.benefit-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.benefit-card p {
+    font-size: 1rem;
+}
+
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}

@@ -1,0 +1,217 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background: #007bff;
+    color: #fff;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+header .logo img {
+    height: 60px;
+
+   
+}
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  max-width: 150px;
+  border-radius: 10px;
+}
+
+.logo h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+header nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+header nav ul li {
+    flex: 1;
+    text-align: center;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+header nav ul li a:hover,
+header nav ul li a.active {
+    color: #ffcc00;
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px 0;
+    flex-grow: 1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Account Section */
+#account-section {
+    text-align: center;
+}
+
+/* Auth Section (Login/Signup) */
+.auth-section {
+    margin: 20px 0;
+}
+
+.auth-section.hidden {
+    display: none;
+}
+
+.auth-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.auth-section input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 250px;
+}
+
+.auth-section .btn {
+    background: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.auth-section .btn:hover {
+    background: #0056b3;
+}
+
+/* Account Dashboard */
+#account-dashboard {
+    margin-top: 30px;
+}
+
+#account-dashboard h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Stats Container */
+.stats-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.account-info {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.account-info p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.account-info .balance, .account-info .investment, .account-info .forecast {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.performance-stats {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.performance-stats h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.performance-stats ul {
+    list-style: none;
+    padding: 0;
+}
+
+.performance-stats ul li {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.performance-stats span {
+    font-weight: bold;
+}
+
+/* Tools Section */
+.tools-section {
+    margin-top: 30px;
+}
+
+.tools-section .btn {
+    background: #ffcc00;
+    color: #007bff;
+    font-size: 18px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.tools-section .btn:hover {
+    background: #e6b800;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}

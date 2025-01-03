@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>INVSTUP - Investments</title>
   <link rel="stylesheet" href="assets/css/investments.css">
+  <script src="assets/js/header.js" defer></script>
   <script src="assets/js/investments.js" defer></script>
 </head>
 <body>
+  <!-- Dynamic Header -->
   <header>
     <div class="container">
       <div class="logo">
@@ -15,13 +17,8 @@
           <img src="assets/images/logo-banner.png" alt="INVSTUP Logo">
         </a>
       </div>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="investments.html" class="active">Investments</a></li>
-          <li><a href="certification.html">Certifications</a></li>
-          <li><a href="account.html">Account</a></li>
-        </ul>
+      <nav id="dynamic-nav">
+        <!-- Dynamic navigation will be rendered here -->
       </nav>
     </div>
   </header>
@@ -33,7 +30,7 @@
         <h1>Explore Investment Opportunities</h1>
         <p>Find diverse investment opportunities, tailored to your goals. Whether you're seeking high growth, sustainability, or security, we've got you covered.</p>
         <div class="investment-grid">
-          <!-- Investment Card -->
+          <!-- Investment Cards -->
           <div class="investment-card">
             <img src="assets/images/startup.jpg" alt="Startup">
             <h3>Startup</h3>
@@ -42,7 +39,6 @@
             <p><strong>Safeness Rating:</strong> Medium</p>
             <button class="btn invest-btn">Learn More</button>
           </div>
-          <!-- Investment Card -->
           <div class="investment-card">
             <img src="assets/images/real_estate.jpg" alt="Real Estate Project">
             <h3>Real Estate Project</h3>
@@ -51,7 +47,6 @@
             <p><strong>Safeness Rating:</strong> High</p>
             <button class="btn invest-btn">Learn More</button>
           </div>
-          <!-- Investment Card -->
           <div class="investment-card">
             <img src="assets/images/tech_innovation.jpg" alt="Tech Innovation">
             <h3>Tech Innovation</h3>
@@ -70,7 +65,6 @@
         <h1>Green Investments</h1>
         <p>Support projects that contribute to a sustainable future while earning competitive returns.</p>
         <div class="investment-grid">
-          <!-- Green Investment Card -->
           <div class="investment-card">
             <img src="assets/images/solar_energy.jpg" alt="Solar Energy Project">
             <h3>Solar Energy Project</h3>
@@ -79,7 +73,6 @@
             <p><strong>Safeness Rating:</strong> High</p>
             <button class="btn invest-btn">Learn More</button>
           </div>
-          <!-- Green Investment Card -->
           <div class="investment-card">
             <img src="assets/images/eco_startup.jpg" alt="Eco-Friendly Startup">
             <h3>Eco-Friendly Startup</h3>

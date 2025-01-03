@@ -6,21 +6,17 @@
   <title>INVSTUP - Certification</title>
   <link rel="stylesheet" href="assets/css/certification.css">
   <script src="assets/js/certification.js" defer></script>
+  <script src="assets/js/header.js" defer></script>
 </head>
 <body>
   <header>
     <div class="container">
       <div class="logo">
-        <img src="assets/images/logo-banner.png" alt="INVSTUP Logo">
+        <a href="index.html">
+          <img src="assets/images/logo-banner.png" alt="INVSTUP Logo">
+        </a>
       </div>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="investments.html">Investments</a></li>
-          <li><a href="certification.html" class="active">Certifications</a></li>
-          <li><a href="account.html">Account</a></li>
-        </ul>
-      </nav>
+      <nav id="dynamic-nav"></nav>
     </div>
   </header>
 
@@ -55,7 +51,6 @@
           <li>Corporate Finance Fundamentals</li>
           <li>Risk Management and Portfolio Theory</li>
         </ul>
-        <!-- Start Certification Button placed under the text -->
         <div class="button-container">
           <button id="start-certification" class="btn">Start Certification Exam</button>
         </div>

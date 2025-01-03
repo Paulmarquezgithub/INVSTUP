@@ -31,7 +31,7 @@
 
         <!-- Account Auth Section (Login/Signup) -->
         <div id="account-auth">
-          <div id="login-section" class="auth-section hidden">
+          <div id="login-section" class="auth-section">
             <h2>Login to Your Account</h2>
             <form id="login-form">
               <label for="email">Email:</label>
@@ -40,26 +40,19 @@
               <input type="password" id="password" name="password" required>
               <button type="submit" class="btn">Login</button>
             </form>
+            <p class="auth-link">
+              Don't have an account? <a href="register.html">Create one here</a>.
+            </p>
           </div>
-          <div id="signup-section" class="auth-section hidden">
-            <h2>Create a New Account</h2>
-            <form id="signup-form">
-              <label for="new-email">Email:</label>
-              <input type="email" id="new-email" name="new-email" required>
-              <label for="new-password">Password:</label>
-              <input type="password" id="new-password" name="new-password" required>
-              <button type="submit" class="btn">Sign Up</button>
-            </form>
-          </div>
-          <button id="toggle-auth" class="btn">Create Account</button>
         </div>
 
         <!-- Account Dashboard Section -->
-        <div id="account-dashboard" class="hidden">
+        <div id="account-dashboard" class="dashboard">
           <h2>Your Account Dashboard</h2>
 
           <div class="stats-container">
             <div class="account-info">
+              <h3>Account Overview</h3>
               <p><strong>Account Balance:</strong> <span class="balance">$10,500</span></p>
               <p><strong>Total Investments:</strong> <span class="investment">$7,200</span></p>
               <p><strong>Portfolio Forecast:</strong> <span class="forecast">+8.5% ROI (Next Quarter)</span></p>

@@ -1,0 +1,16 @@
+{
+    "name": "invstup",
+    "version": "1.0.0",
+    "description": "Investment application",
+    "main": "index.html",
+    "scripts": {},
+    "repository": {},
+    "author": "Paul Marquez",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^5.1.1",
+        "cors": "^2.8.5",
+        "express": "^4.21.2",
+        "pg": "^8.13.1"
+    }
+}

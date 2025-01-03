@@ -1,0 +1,37 @@
+/* Profile Page Styles */
+
+#profile {
+    text-align: center;
+}
+
+.profile-info {
+    display: inline-block;
+    text-align: left;
+    margin-top: 20px;
+}
+
+#username {
+    font-size: 1.5rem;
+    color: #007bff;
+}
+
+#email {
+    font-size: 1rem;
+    color: #666;
+}
+
+#edit-profile-btn {
+    background: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+#edit-profile-btn:hover {
+    background: #0056b3;
+}

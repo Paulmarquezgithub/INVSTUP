@@ -8,13 +8,11 @@ body {
 }
 
 header {
-    background: #007bff;
-    color: #fff;
-    padding: 20px 0;
+    background: linear-gradient(to right, #007bff, #0056b3);
+    padding: 20px;
     display: flex;
-    justify-content: center; /* Center the logo and nav */
     align-items: center;
-
+    justify-content: center; /* Center the content */
 }
 header .logo img {
     height: 60px;
@@ -41,11 +39,17 @@ header .logo img {
 header nav ul {
     list-style: none;
     display: flex;
-    gap: 15px;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+header nav ul li {
+    padding: 5px 10px; /* Ensure uniform padding around the links */
 }
 
 header nav ul li a {
-    color: #fff;
+    color: white;
     text-decoration: none;
     font-weight: bold;
     padding: 5px 10px;
@@ -57,7 +61,7 @@ header nav ul li a:hover, header nav ul li a.active {
 }
 
 main {
-    padding: 20px 0;
+    padding: 40px 20px;
 }
 
 /* Certification Banner */

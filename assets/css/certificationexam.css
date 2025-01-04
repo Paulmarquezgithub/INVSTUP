@@ -12,7 +12,7 @@ header {
     padding: 20px;
     display: flex;
     align-items: center;
-    justify-content: center; /* Center the content */
+    justify-content: center;
 }
 
 header .logo img {
@@ -26,16 +26,6 @@ header .logo img {
     gap: 10px;
 }
 
-.logo img {
-    max-width: 150px;
-    border-radius: 10px;
-}
-
-.logo h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-}
-
 header nav ul {
     list-style: none;
     display: flex;
@@ -45,7 +35,7 @@ header nav ul {
 }
 
 header nav ul li {
-    padding: 5px 10px; /* Ensure uniform padding around the links */
+    padding: 5px 10px;
 }
 
 header nav ul li a {
@@ -65,11 +55,10 @@ main {
 }
 
 .button-container {
-    text-align: center;
-    margin: 40px 0;
     display: flex;
     justify-content: center;
-    gap: 40px; /* Space between buttons */
+    gap: 40px;
+    margin-top: 50px;
     flex-wrap: wrap;
 }
 
@@ -93,11 +82,11 @@ main {
 
 .btn-primary:hover {
     background: #0056b3;
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .button-logo {
-    width: 150px; /* Increase image size */
+    width: 150px;
     height: 150px;
     margin-bottom: 15px;
 }

@@ -5,7 +5,7 @@ document.getElementById("start-certification").addEventListener("click", () => {
 
   if (confirmStart) {
     alert("Redirecting to the certification exam...");
-    window.location.href = "exam.html"; // Adjust to actual exam page when ready
+    window.location.href = "certificationexam.html"; // Updated to correct exam page
   } else {
     alert("Take your time and start when you feel ready.");
   }

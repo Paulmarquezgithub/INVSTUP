@@ -1,193 +1,708 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>INVSTUP - Course 1: Foundations of Investment and Finance</title>
-  <link rel="stylesheet" href="assets/css/course1.css">
-  <script src="assets/js/course1.js" defer></script>
-  <script src="assets/js/header.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFA Mastery Platform</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --background-color: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--background-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .module {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .visualization-container {
+            height: 500px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .formula-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .explanation {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .nav-tab {
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            background: var(--background-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        input[type="number"], input[type="range"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <div class="logo">
-        <a href="index.html">
-          <img src="assets/images/logo-banner.png" alt="INVSTUP Logo">
-        </a>
-      </div>
-      <nav id="dynamic-nav"></nav>
+    <div class="nav-tabs">
+        <div class="nav-tab active" onclick="showModule(0)">TVM</div>
+        <div class="nav-tab" onclick="showModule(1)">Portfolio Theory</div>
+        <div class="nav-tab" onclick="showModule(2)">Derivatives</div>
+        <div class="nav-tab" onclick="showModule(3)">Fixed Income</div>
+        <div class="nav-tab" onclick="showModule(4)">Financial Ratios</div>
     </div>
-  </header>
 
-  <main>
-    <!-- Introduction to Financial Concepts Section -->
-    <section id="financial-concepts">
-      <div class="container">
-        <h1>Introduction to Financial Concepts</h1>
-        <p>Finance encompasses the management of money at both personal and corporate levels, focusing on borrowing, lending, budgeting, saving, and investing. In this section, we will delve into the basic principles of finance, including:</p>
-        <ul>
-          <li>Personal Finance: Financial planning for individuals, covering saving for retirement, managing debt, and investing for future needs.</li>
-          <li>Corporate Finance: Financial activities related to running a corporation, including capital raising, asset management, and financial risk management.</li>
-          <li>Public Finance: The role of the government in the economy, addressing taxation, government spending, and budget formation.</li>
-        </ul>
-        <div class="key-areas">
-          <div class="key-area">
-            <h3>Financial Markets</h3>
-            <p>Financial markets play a crucial role in facilitating the flow of money between investors and businesses. We will explore the different types of financial markets, including:</p>
-            <ul>
-              <li>Stock Markets: Where companies raise capital by issuing shares of stock to the public.</li>
-              <li>Bond Markets: Where companies and governments raise capital by issuing debt securities.</li>
-              <li>Commodity Markets: Where physical goods are traded, such as oil, gold, and agricultural products.</li>
-            </ul>
-          </div>
-          <div class="key-area">
-            <h3>Financial Instruments</h3>
-            <p>Financial instruments are the lifeblood of financial markets, enabling the flow of money between investors and businesses. We will examine the different types of financial instruments, including:</p>
-            <ul>
-              <li>Stocks: Representing ownership in companies, offering potential for long-term growth.</li>
-              <li>Bonds: Representing debt, providing regular income and relatively lower risk.</li>
-              <li>Commodities: Physical goods traded on markets, often used for hedging or speculation.</li>
-            </ul>
-          </div>
+    <!-- Time Value of Money Module -->
+    <div class="module" id="module0">
+        <h2>Time Value of Money</h2>
+        <div class="explanation">
+            <h3>Core Concept</h3>
+            <p>The time value of money (TVM) states that money available now is worth more than the same amount in the future due to its potential earning capacity.</p>
+            <div class="formula-box">
+                \[ FV = PV \times (1 + r)^n \]
+                <p>Where:
+                <br>FV = Future Value
+                <br>PV = Present Value
+                <br>r = Periodic interest rate
+                <br>n = Number of periods</p>
+            </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Time Value of Money (TVM) Section -->
-    <section id="time-value-of-money">
-      <div class="container">
-        <h1>Time Value of Money (TVM)</h1>
-        <p>The core principle that money available today is worth more than the same amount in the future due to its potential to earn interest. We will explore the key concepts of TVM, including:</p>
-        <ul>
-          <li>Present Value (PV): The current worth of a future sum, considering a specific interest rate.</li>
-          <li>Future Value (FV): The value of an investment after a certain period, based on the initial principal and interest rate.</li>
-          <li>Net Present Value (NPV): The difference between the present value of cash inflows and outflows, used to evaluate investment opportunities.</li>
-        </ul>
-        <div class="key-formulas">
-          <div class="key-formula">
-            <h3>Present Value (PV) Formula</h3>
-            <p>PV = FV / (1 + r)^n</p>
-          </div>
-          <div class="key-formula">
-            <h3>Future Value (FV) Formula</h3>
-            <p>FV = PV * (1 + r)^n</p>
-          </div>
+        <div class="calculator-grid">
+            <div class="input-group">
+                <label>Present Value ($)</label>
+                <input type="number" id="tvm-pv" value="1000" step="100">
+                <input type="range" id="tvm-pv-range" min="0" max="10000" step="100" value="1000">
+            </div>
+            <div class="input-group">
+                <label>Annual Rate (%)</label>
+                <input type="number" id="tvm-rate" value="5" step="0.1">
+                <input type="range" id="tvm-rate-range" min="0" max="20" step="0.1" value="5">
+            </div>
+            <div class="input-group">
+                <label>Periods (years)</label>
+                <input type="number" id="tvm-n" value="5" step="1">
+                <input type="range" id="tvm-n-range" min="1" max="30" value="5">
+            </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Annuity Section -->
-    <section id="annuity">
-      <div class="container">
-        <h1>Annuity</h1>
-        <p>A series of fixed payments made at equal intervals, often used in retirement planning or investment scenarios. We will examine the different types of annuities, including:</p>
-        <ul>
-          <li>Fixed Annuity: Provides a guaranteed interest rate for a set period, offering predictable income.</li>
-          <li>Variable Annuity: Allows investment in a variety of assets, offering potential for growth but also increased risk.</li>
-          <li>Indexed Annuity: Ties the interest rate to the performance of a specific stock market index, offering a balance between risk and potential return.</li>
-        </ul>
-        <div class="key-formulas">
-          <div class="key-formula">
-            <h3>Present Value of Annuity (PVA) Formula</h3>
-            <p>PVA = PMT * [(1 - (1 + r)^(-n)) / r]</p>
-          </div>
-          <div class="key-formula">
-            <h3>Future Value of Annuity (FVA) Formula</h3>
-            <p>FVA = PMT * [((1 + r)^n - 1) / r]</p>
-          </div>
+        <div class="visualization-container">
+            <canvas id="tvmChart"></canvas>
         </div>
-      </div>
-    </section>
-
-    <!-- Financial Statement Analysis Section -->
-    <section id="financial-statement-analysis">
-      <div class="container">
-        <h1>Financial Statement Analysis</h1>
-        <p>A method used by investors, analysts, and creditors to understand the financial health and performance of a company. We will explore the different types of financial statements, including:</p>
-        <ul>
-          <li>Income Statement: Shows revenues, expenses, and profit over a period.</li>
-          <li>Balance Sheet: Lists assets, liabilities, and equity at a point in time.</li>
-          <li>Cash Flow Statement: Shows cash inflows and outflows from operations, investing, and financing activities.</li>
-        </ul>
-        <div class="key-statements">
-          <div class="key-statement">
-            <h3>Liquidity Ratios</h3>
-            <p>Measure a company's ability to meet its short-term obligations, including:</p>
-            <ul>
-              <li>Current Ratio: Current Assets / Current Liabilities</li>
-              <li>Quick Ratio: (Current Assets - Inventory) / Current Liabilities</li>
-            </ul>
-          </div>
-          <div class="key-statement">
-            <h3>Solvency Ratios</h3>
-            <p>Assess a company's long-term financial stability, including:</p>
-            <ul>
-              <li>Debt to Equity Ratio: Total Liabilities / Shareholder's Equity</li>
-              <li>Interest Coverage Ratio: EBIT / Interest Expenses</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Asset Classes Section -->
-    <section id="asset-classes">
-      <div class="container">
-        <h1>Asset Classes</h1>
-        <p>Different types of investments, each with its unique characteristics and risks. We will examine the following asset classes:</p>
-        <ul>
-          <li>Stocks: Representing ownership in companies, offering potential for long-term growth.</li>
-          <li>Bonds: Representing debt, providing regular income and relatively lower risk.</li>
-          <li>Commodities: Physical goods traded on markets, often used for hedging or speculation.</li>
-          <li>Real Estate: Property consisting of land and the buildings on it, offering rental income and potential for appreciation.</li>
-        </ul>
-        <div class="asset-class">
-          <h3>Stocks</h3>
-          <p>Representing ownership in companies, stocks offer potential for long-term growth but also come with higher risks.</p>
-          <ul>
-            <li>Common Stocks: Entitle holders to dividends and voting rights.</li>
-            <li>Preferred Stocks: Offer fixed dividends but usually no voting rights.</li>
-          </ul>
-        </div>
-        <div class="asset-class">
-          <h3>Bonds</h3>
-          <p>Representing debt, bonds provide regular income and relatively lower risk but also offer lower potential returns.</p>
-          <ul>
-            <li>Government Bonds: Typically viewed as low-risk, especially those from stable countries.</li>
-            <li>Corporate Bonds: Higher risk depending on the issuing company's financial health.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Introduction to Portfolio Theory Section -->
-    <section id="portfolio-theory">
-      <div class="container">
-        <h1>Introduction to Portfolio Theory</h1>
-        <p>A theory on how risk-averse investors can construct portfolios to optimize or maximize expected return based on a given level of market risk. We will explore the key concepts of portfolio theory, including:</p>
-        <ul>
-          <li>Efficient Frontier: A set of optimal portfolios that offer the highest expected return for a defined level of risk.</li>
-          <li>Capital Asset Pricing Model (CAPM): A model that describes the relationship between systematic risk and expected return.</li>
-        </ul>
-        <div class="key-concepts">
-          <div class="key-concept">
-            <h3>Diversification</h3>
-            <p>Spreading investments across various assets to reduce exposure to any one particular asset or risk.</p>
-          </div>
-          <div class="key-concept">
-            <h3>Asset Allocation</h3>
-            <p>Deciding how to distribute investments among different categories of assets to achieve optimal returns.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2024 INVSTUP. All rights reserved.</p>
     </div>
-  </footer>
+
+    <!-- Modern Portfolio Theory Module -->
+    <div class="module" id="module1" style="display:none;">
+        <h2>Modern Portfolio Theory</h2>
+        <div class="explanation">
+            <h3>Efficient Frontier</h3>
+            <p>The efficient frontier shows optimal portfolios offering the highest expected return for a defined level of risk.</p>
+            <div class="formula-box">
+                \[ \sigma_p = \sqrt{w_1^2\sigma_1^2 + w_2^2\sigma_2^2 + 2w_1w_2Cov_{1,2}} \]
+                <p>Where:
+                <br>σ<sub>p</sub> = Portfolio standard deviation
+                <br>w = Asset weights
+                <br>σ = Asset standard deviations
+                <br>Cov = Covariance between assets</p>
+            </div>
+        </div>
+
+        <div class="calculator-grid">
+            <div class="input-group">
+                <label>Risk-Free Rate (%)</label>
+                <input type="number" id="risk-free" value="2" step="0.1">
+            </div>
+            <div class="input-group">
+                <label>Asset Correlation</label>
+                <input type="number" id="correlation" value="0.3" step="0.1" min="-1" max="1">
+            </div>
+        </div>
+
+        <div class="visualization-container">
+            <canvas id="portfolioChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Derivatives Module -->
+    <div class="module" id="module2" style="display:none;">
+        <h2>Options Pricing</h2>
+        <div class="explanation">
+            <h3>Black-Scholes Model</h3>
+            <p>The Black-Scholes model calculates the theoretical price of European options:</p>
+            <div class="formula-box">
+                \[ C = S_0N(d_1) - Xe^{-rT}N(d_2) \]
+                \[ d_1 = \frac{\ln(S_0/X) + (r + \sigma^2/2)T}{\sigma\sqrt{T}} \]
+                \[ d_2 = d_1 - \sigma\sqrt{T} \]
+                <p>Where:
+                <br>C = Call option price
+                <br>S<sub>0</sub> = Current stock price
+                <br>X = Strike price
+                <br>r = Risk-free rate
+                <br>T = Time to expiration
+                <br>σ = Volatility</p>
+            </div>
+        </div>
+
+        <div class="calculator-grid">
+            <div class="input-group">
+                <label>Stock Price ($)</label>
+                <input type="number" id="stock-price" value="100" step="5">
+            </div>
+            <div class="input-group">
+                <label>Strike Price ($)</label>
+                <input type="number" id="strike-price" value="100" step="5">
+            </div>
+            <div class="input-group">
+                <label>Volatility (%)</label>
+                <input type="number" id="volatility" value="20" step="1">
+            </div>
+            <div class="input-group">
+                <label>Time to Expiry (years)</label>
+                <input type="number" id="time-expiry" value="1" step="0.1">
+            </div>
+        </div>
+
+        <div class="visualization-container">
+            <canvas id="optionsChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Fixed Income Module -->
+    <div class="module" id="module3" style="display:none;">
+        <h2>Fixed Income Analysis</h2>
+        <div class="explanation">
+            <h3>Bond Valuation</h3>
+            <p>Bond price is calculated as the present value of future cash flows:</p>
+            <div class="formula-box">
+                \[ P = \sum_{t=1}^n \frac{C}{(1+y)^t} + \frac{F}{(1+y)^n} \]
+                <p>Where:
+                <br>P = Bond price
+                <br>C = Coupon payment
+                <br>F = Face value
+                <br>y = Yield to maturity
+                <br>n = Number of periods</p>
+            </div>
+        </div>
+
+        <div class="calculator-grid">
+            <div class="input-group">
+                <label>Face Value ($)</label>
+                <input type="number" id="face-value" value="1000" step="100">
+            </div>
+            <div class="input-group">
+                <label>Coupon Rate (%)</label>
+                <input type="number" id="coupon-rate" value="5" step="0.1">
+            </div>
+            <div class="input-group">
+                <label>Years to Maturity</label>
+                <input type="number" id="bond-years" value="10" step="1">
+            </div>
+            <div class="input-group">
+                <label>Market Yield (%)</label>
+                <input type="number" id="bond-yield" value="6" step="0.1">
+            </div>
+        </div>
+
+        <div class="visualization-container">
+            <canvas id="bondChart"></canvas>
+        </div>
+
+        <div class="explanation">
+            <h3>Yield Curve Dynamics</h3>
+            <p>The yield curve shows interest rates across different maturities:</p>
+            <div class="formula-box">
+                \[ \text{Spot Rate}_t = \left(\frac{F}{P}\right)^{1/t} - 1 \]
+                <p>Where:
+                <br>F = Future value
+                <br>P = Present value
+                <br>t = Time period</p>
+            </div>
+        </div>
+
+        <div class="visualization-container">
+            <canvas id="yieldCurveChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Financial Ratios Module -->
+    <div class="module" id="module4" style="display:none;">
+        <h2>Financial Ratio Analysis</h2>
+        <div class="explanation">
+            <h3>Key Financial Ratios</h3>
+            <p>Financial ratios help assess company performance:</p>
+            <div class="formula-box">
+                \[ \text{ROE} = \frac{\text{Net Income}}{\text{Shareholders' Equity}} \]
+                \[ \text{Debt/Equity} = \frac{\text{Total Liabilities}}{\text{Shareholders' Equity}} \]
+                \[ \text{P/E Ratio} = \frac{\text{Market Price per Share}}{\text{Earnings per Share}} \]
+            </div>
+        </div>
+
+        <div class="calculator-grid">
+            <div class="input-group">
+                <label>Net Income ($)</label>
+                <input type="number" id="net-income" value="500000">
+            </div>
+            <div class="input-group">
+                <label>Total Assets ($)</label>
+                <input type="number" id="total-assets" value="2500000">
+            </div>
+            <div class="input-group">
+                <label>Total Liabilities ($)</label>
+                <input type="number" id="total-liabilities" value="1500000">
+            </div>
+            <div class="input-group">
+                <label>Shareholders' Equity ($)</label>
+                <input type="number" id="equity" value="1000000">
+            </div>
+            <div class="input-group">
+                <label>Market Cap ($)</label>
+                <input type="number" id="market-cap" value="5000000">
+            </div>
+            <div class="input-group">
+                <label>Shares Outstanding</label>
+                <input type="number" id="shares-outstanding" value="1000000">
+            </div>
+        </div>
+
+        <div class="visualization-container">
+            <canvas id="ratiosChart"></canvas>
+        </div>
+
+        <div class="explanation">
+            <h3>DuPont Analysis</h3>
+            <p>Breaks down ROE into three components:</p>
+            <div class="formula-box">
+                \[ \text{ROE} = \text{Profit Margin} \times \text{Asset Turnover} \times \text{Equity Multiplier} \]
+                \[ \text{Profit Margin} = \frac{\text{Net Income}}{\text{Revenue}} \]
+                \[ \text{Asset Turnover} = \frac{\text{Revenue}}{\text{Total Assets}} \]
+                \[ \text{Equity Multiplier} = \frac{\text{Total Assets}}{\text{Shareholders' Equity}} \]
+            </div>
+        </div>
+    </div>
+
+<script>
+// TVM Calculator
+const tvmCalculator = {
+    chart: null,
+    
+    init() {
+        document.querySelectorAll('#module0 input').forEach(input => {
+            input.addEventListener('input', () => this.updateChart());
+        });
+        this.updateChart();
+    },
+
+    calculateFV(pv, rate, n) {
+        return pv * Math.pow(1 + rate/100, n);
+    },
+
+    updateChart() {
+        const pv = parseFloat(document.getElementById('tvm-pv').value);
+        const rate = parseFloat(document.getElementById('tvm-rate').value);
+        const n = parseFloat(document.getElementById('tvm-n').value);
+        
+        const labels = Array.from({length: n}, (_, i) => i + 1);
+        const data = labels.map(year => this.calculateFV(pv, rate, year));
+        
+        if(this.chart) this.chart.destroy();
+        
+        this.chart = new Chart(document.getElementById('tvmChart'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Future Value Growth',
+                    data: data,
+                    borderColor: '#3498db',
+                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        title: {display: true, text: 'Future Value ($)'},
+                        beginAtZero: true
+                    },
+                    x: {title: {display: true, text: 'Years'}}
+                }
+            }
+        });
+    }
+};
+
+// Portfolio Theory Calculator
+const portfolioTheory = {
+    chart: null,
+    
+    init() {
+        document.querySelectorAll('#module1 input').forEach(input => {
+            input.addEventListener('input', () => this.updateChart());
+        });
+        this.updateChart();
+    },
+
+    calculateFrontier() {
+        const correlation = parseFloat(document.getElementById('correlation').value);
+        const rf = parseFloat(document.getElementById('risk-free').value)/100;
+        
+        const stock = {return: 8, risk: 15};
+        const bond = {return: 4, risk: 5};
+        
+        const portfolios = [];
+        for(let w = 0; w <= 1; w += 0.01) {
+            const ret = w*stock.return + (1-w)*bond.return;
+            const risk = Math.sqrt(
+                Math.pow(w*stock.risk, 2) + 
+                Math.pow((1-w)*bond.risk, 2) + 
+                2*w*(1-w)*stock.risk*bond.risk*correlation
+            );
+            portfolios.push({x: risk, y: ret});
+        }
+        
+        const maxSharpe = portfolios.reduce((max, p) => {
+            const sharpe = (p.y - rf)/p.x;
+            return sharpe > max.sharpe ? {sharpe, ...p} : max;
+        }, {sharpe: 0});
+        
+        const cml = [];
+        for(let x = 0; x <= maxSharpe.x*1.5; x += 0.5) {
+            cml.push({x, y: rf + (maxSharpe.y - rf)/maxSharpe.x * x});
+        }
+        
+        return {portfolios, cml};
+    },
+
+    updateChart() {
+        const {portfolios, cml} = this.calculateFrontier();
+        
+        if(this.chart) this.chart.destroy();
+        
+        this.chart = new Chart(document.getElementById('portfolioChart'), {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Efficient Frontier',
+                    data: portfolios,
+                    borderColor: '#2ecc71',
+                    backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                    showLine: true
+                },
+                {
+                    label: 'Capital Market Line',
+                    data: cml,
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                    showLine: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        type: 'linear',
+                        title: {display: true, text: 'Risk (σ)'},
+                        min: 0
+                    },
+                    y: {
+                        title: {display: true, text: 'Return (%)'},
+                        min: 0
+                    }
+                }
+            }
+        });
+    }
+};
+
+// Derivatives Calculator
+const derivativesCalculator = {
+    chart: null,
+    
+    init() {
+        document.querySelectorAll('#module2 input').forEach(input => {
+            input.addEventListener('input', () => this.updateChart());
+        });
+        this.updateChart();
+    },
+
+    blackScholes(S, K, T, r, σ) {
+        const d1 = (Math.log(S/K) + (r + σ**2/2)*T) / (σ*Math.sqrt(T));
+        const d2 = d1 - σ*Math.sqrt(T);
+        return S * this.CND(d1) - K * Math.exp(-r*T) * this.CND(d2);
+    },
+
+    CND(x) {
+        const a1 = 0.31938153, a2 = -0.356563782, a3 = 1.781477937;
+        const a4 = -1.821255978, a5 = 1.330274429;
+        const L = Math.abs(x);
+        const K = 1 / (1 + 0.2316419 * L);
+        let cnd = 1 - 1 / Math.sqrt(2*Math.PI) * Math.exp(-L*L/2) * 
+            (a1*K + a2*K**2 + a3*K**3 + a4*K**4 + a5*K**5);
+        return x < 0 ? 1 - cnd : cnd;
+    },
+
+    updateChart() {
+        const S = parseFloat(document.getElementById('stock-price').value);
+        const K = parseFloat(document.getElementById('strike-price').value);
+        const T = parseFloat(document.getElementById('time-expiry').value);
+        const σ = parseFloat(document.getElementById('volatility').value)/100;
+        const r = 0.02;
+        
+        const volatilities = Array.from({length: 20}, (_, i) => i + 1);
+        const prices = volatilities.map(v => 
+            this.blackScholes(S, K, T, r, v/100));
+        
+        if(this.chart) this.chart.destroy();
+        
+        this.chart = new Chart(document.getElementById('optionsChart'), {
+            type: 'line',
+            data: {
+                labels: volatilities,
+                datasets: [{
+                    label: 'Call Option Price',
+                    data: prices,
+                    borderColor: '#9b59b6',
+                    backgroundColor: 'rgba(155, 89, 182, 0.1)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {title: {display: true, text: 'Volatility (%)'}},
+                    y: {title: {display: true, text: 'Option Price ($)'}}
+                }
+            }
+        });
+    }
+};
+
+// Fixed Income Calculator
+const fixedIncomeCalculator = {
+    chart: null,
+    yieldCurveChart: null,
+    
+    init() {
+        document.querySelectorAll('#module3 input').forEach(input => {
+            input.addEventListener('input', () => this.updateCharts());
+        });
+        this.updateCharts();
+    },
+
+    calculateBondPrice() {
+        const F = parseFloat(document.getElementById('face-value').value);
+        const C = F * parseFloat(document.getElementById('coupon-rate').value)/100;
+        const n = parseFloat(document.getElementById('bond-years').value);
+        const y = parseFloat(document.getElementById('bond-yield').value)/100;
+
+        let price = 0;
+        for(let t = 1; t <= n; t++) {
+            price += C / Math.pow(1 + y, t);
+        }
+        price += F / Math.pow(1 + y, n);
+        return price;
+    },
+
+    generateYieldCurve() {
+        const baseYield = parseFloat(document.getElementById('bond-yield').value)/100;
+        return [1, 2, 5, 10, 30].map(years => ({
+            x: years,
+            y: (baseYield * (1 + years/30) * 100).toFixed(2)
+        }));
+    },
+
+    updateCharts() {
+        const yields = Array.from({length: 20}, (_, i) => 2 + i*0.5);
+        const prices = yields.map(y => {
+            document.getElementById('bond-yield').value = y;
+            return this.calculateBondPrice();
+        });
+
+        if(this.chart) this.chart.destroy();
+        this.chart = new Chart(document.getElementById('bondChart'), {
+            type: 'line',
+            data: {
+                labels: yields.map(y => y + '%'),
+                datasets: [{
+                    label: 'Bond Price',
+                    data: prices,
+                    borderColor: '#e67e22',
+                    backgroundColor: 'rgba(230, 126, 34, 0.1)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {title: {display: true, text: 'Yield to Maturity'}},
+                    y: {title: {display: true, text: 'Bond Price ($)'}}
+                }
+            }
+        });
+
+        const yieldCurveData = this.generateYieldCurve();
+        if(this.yieldCurveChart) this.yieldCurveChart.destroy();
+        this.yieldCurveChart = new Chart(document.getElementById('yieldCurveChart'), {
+            type: 'line',
+            data: {
+                labels: yieldCurveData.map(d => d.x + 'Y'),
+                datasets: [{
+                    label: 'Yield Curve',
+                    data: yieldCurveData,
+                    borderColor: '#16a085',
+                    backgroundColor: 'rgba(22, 160, 133, 0.1)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {title: {display: true, text: 'Maturity'}},
+                    y: {title: {display: true, text: 'Yield (%)'}}
+                }
+            }
+        });
+    }
+};
+
+// Financial Ratios Calculator
+const ratiosCalculator = {
+    chart: null,
+    
+    init() {
+        document.querySelectorAll('#module4 input').forEach(input => {
+            input.addEventListener('input', () => this.updateChart());
+        });
+        this.updateChart();
+    },
+
+    calculateRatios() {
+        const netIncome = parseFloat(document.getElementById('net-income').value);
+        const totalAssets = parseFloat(document.getElementById('total-assets').value);
+        const totalLiabilities = parseFloat(document.getElementById('total-liabilities').value);
+        const equity = parseFloat(document.getElementById('equity').value);
+        const marketCap = parseFloat(document.getElementById('market-cap').value);
+        const shares = parseFloat(document.getElementById('shares-outstanding').value);
+
+        return {
+            roe: (netIncome / equity) * 100,
+            roa: (netIncome / totalAssets) * 100,
+            debtEquity: (totalLiabilities / equity) * 100,
+            pe: marketCap / netIncome,
+            eps: netIncome / shares
+        };
+    },
+
+    updateChart() {
+        const ratios = this.calculateRatios();
+        const data = {
+            labels: ['ROE (%)', 'ROA (%)', 'Debt/Equity (%)', 'P/E Ratio', 'EPS'],
+            datasets: [{
+                label: 'Financial Ratios',
+                data: [ratios.roe, ratios.roa, ratios.debtEquity, ratios.pe, ratios.eps],
+                backgroundColor: [
+                    '#3498db', '#2ecc71', '#e74c3c', '#9b59b6', '#f1c40f'
+                ]
+            }]
+        };
+
+        if(this.chart) this.chart.destroy();
+        this.chart = new Chart(document.getElementById('ratiosChart'), {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                scales: {
+                    y: {beginAtZero: true},
+                    x: {title: {display: true, text: 'Ratio Type'}}
+                }
+            }
+        });
+    }
+};
+
+// Navigation System
+function showModule(moduleIndex) {
+    document.querySelectorAll('.module').forEach((m, i) => {
+        m.style.display = i === moduleIndex ? 'block' : 'none';
+    });
+    document.querySelectorAll('.nav-tab').forEach((t, i) => {
+        t.classList.toggle('active', i === moduleIndex);
+    });
+    
+    if(moduleIndex === 0) tvmCalculator.init();
+    if(moduleIndex === 1) portfolioTheory.init();
+    if(moduleIndex === 2) derivativesCalculator.init();
+    if(moduleIndex === 3) fixedIncomeCalculator.init();
+    if(moduleIndex === 4) ratiosCalculator.init();
+}
+
+// Initialize MathJax
+MathJax = {
+    tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+};
+
+// Initialization
+tvmCalculator.init();
+</script>
 </body>
 </html>

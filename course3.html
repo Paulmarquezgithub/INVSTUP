@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Financial Analysis Platform</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui;
+            line-height: 1.8;
+            margin: 0;
+            padding: 30px;
+            background: var(--background-color);
+            color: var(--primary-color);
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .nav-tab {
+            padding: 18px 35px;
+            border-radius: 10px;
+            cursor: pointer;
+            background: white;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .nav-tab.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .module {
+            background: white;
+            border-radius: 18px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .theory-section {
+            background: #f8f9fa;
+            padding: 35px;
+            border-radius: 15px;
+            margin: 35px 0;
+        }
+
+        .input-group {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 12px;
+        }
+
+        .chart-container {
+            height: 650px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .formula-box {
+            background: #fff;
+            padding: 25px;
+            border-left: 5px solid var(--secondary-color);
+            margin: 25px 0;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="nav-tabs">
+        <div class="nav-tab active" onclick="showModule('derivatives')">Derivatives Analysis</div>
+        <div class="nav-tab" onclick="showModule('portfolio')">Portfolio Optimization</div>
+        <div class="nav-tab" onclick="showModule('reporting')">Financial Reporting</div>
+    </div>
+
+    <!-- Derivatives Module -->
+    <div class="module" id="derivatives">
+        <div class="theory-section">
+            <h1>Advanced Options Pricing & Risk Analysis</h1>
+            <p>Options are financial contracts granting the right to buy/sell assets at predetermined prices. This module explores the Black-Scholes model and option risk parameters (Greeks).</p>
+            
+            <div class="formula-box">
+                <h3>Black-Scholes Model Formula</h3>
+                \[ C(S,t) = S_tN(d_1) - Ke^{-r(T-t)}N(d_2) \]
+                \[ d_1 = \frac{\ln(S/K) + (r + \frac{\sigma^2}{2})(T-t)}{\sigma\sqrt{T-t}} \]
+                \[ d_2 = d_1 - \sigma\sqrt{T-t} \]
+            </div>
+
+            <h2>Input Parameters Explained</h2>
+            <div class="input-group">
+                <h4>1. Underlying Price (S)</h4>
+                <p>Current market price of the underlying asset (e.g., stock price). This is the most sensitive input - as S increases, call options gain value while puts lose value.</p>
+                <label>Stock Price ($): <input type="number" id="stockPrice" value="100"></label>
+            </div>
+
+            <div class="input-group">
+                <h4>2. Strike Price (K)</h4>
+                <p>Predetermined price at which the option can be exercised. Options are:</p>
+                <ul>
+                    <li><strong>In-the-money (ITM):</strong> Call: S > K, Put: S < K</li>
+                    <li><strong>At-the-money (ATM):</strong> S = K</li>
+                    <li><strong>Out-the-money (OTM):</strong> Call: S < K, Put: S > K</li>
+                </ul>
+                <label>Strike Price ($): <input type="number" id="strikePrice" value="100"></label>
+            </div>
+
+            <div class="input-group">
+                <h4>3. Volatility (σ)</h4>
+                <p>Annualized standard deviation of returns (expressed as decimal). This measures:</p>
+                <ul>
+                    <li><strong>Historical Volatility:</strong> Actual past price fluctuations</li>
+                    <li><strong>Implied Volatility:</strong> Market's expectation of future volatility</li>
+                </ul>
+                <label>Volatility (%): <input type="number" id="volatility" value="20"></label>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="volatilitySurface"></canvas>
+                <p class="chart-caption">Volatility Surface: Shows how implied volatility varies with strike and maturity</p>
+            </div>
+
+            <h2>Option Greeks Explained</h2>
+            <div class="input-group">
+                <h4>Delta (Δ) - Price Sensitivity</h4>
+                \[ \Delta = \frac{\partial C}{\partial S} \]
+                <p>Measures $ change in option price per $1 change in underlying. Call Δ: 0 to 1, Put Δ: -1 to 0</p>
+            </div>
+
+            <div class="input-group">
+                <h4>Gamma (Γ) - Delta Sensitivity</h4>
+                \[ \Gamma = \frac{\partial^2 C}{\partial S^2} \]
+                <p>Measures how much delta changes with $1 move in underlying. Highest for ATM options</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Management Module -->
+    <div class="module" id="portfolio" style="display:none;">
+        <div class="theory-section">
+            <h1>Modern Portfolio Theory & Optimization</h1>
+            <p>Construct optimal portfolios by balancing risk and return through diversification.</p>
+            
+            <div class="formula-box">
+                <h3>Portfolio Variance Formula</h3>
+                \[ \sigma_p^2 = \sum_{i=1}^n w_i^2\sigma_i^2 + \sum_{i\neq j} w_iw_j\sigma_i\sigma_j\rho_{ij} \]
+                <p>Where:</p>
+                <ul>
+                    <li>wᵢ = Asset weight</li>
+                    <li>σᵢ = Asset volatility</li>
+                    <li>ρᵢⱼ = Correlation between assets</li>
+                </ul>
+            </div>
+
+            <h2>Key Concepts Explained</h2>
+            <div class="input-group">
+                <h4>1. Efficient Frontier</h4>
+                <p>Set of optimal portfolios offering highest return for given risk. Found by solving:</p>
+                \[ \begin{cases}
+                \text{Maximize } & \mu_p = \mathbf{w}^T\mathbf{\mu} \\
+                \text{Subject to } & \sigma_p^2 = \mathbf{w}^T\mathbf{\Sigma}\mathbf{w} \leq \sigma_{\text{target}} \\
+                & \sum w_i = 1
+                \end{cases} \]
+            </div>
+
+            <div class="input-group">
+                <h4>2. Capital Market Line (CML)</h4>
+                \[ E(R_p) = R_f + \frac{E(R_m) - R_f}{\sigma_m}\sigma_p \]
+                <p>Optimal portfolios combining risk-free assets and market portfolio</p>
+                <label>Risk-Free Rate (%): <input type="number" id="rfRate" value="2"></label>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="efficientFrontier"></canvas>
+                <p class="chart-caption">Efficient Frontier with Capital Market Line</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Financial Reporting Module -->
+    <div class="module" id="reporting" style="display:none;">
+        <div class="theory-section">
+            <h1>Comprehensive Financial Statement Analysis</h1>
+            <p>Systematic evaluation of company performance through financial reports.</p>
+            
+            <div class="formula-box">
+                <h3>DuPont Analysis Formula</h3>
+                \[ ROE = \frac{\text{Net Income}}{\text{Equity}} = \left(\frac{\text{Net Income}}{\text{Sales}}\right) \times \left(\frac{\text{Sales}}{\text{Assets}}\right) \times \left(\frac{\text{Assets}}{\text{Equity}}\right) \]
+                \[ ROE = \text{Profit Margin} \times \text{Asset Turnover} \times \text{Financial Leverage} \]
+            </div>
+
+            <h2>Financial Ratios Deep Dive</h2>
+            <div class="input-group">
+                <h4>1. Liquidity Ratios</h4>
+                \[ \text{Current Ratio} = \frac{\text{Current Assets}}{\text{Current Liabilities}} \]
+                <p>Measures short-term debt paying ability. Ideal: 1.5-3.0</p>
+            </div>
+
+            <div class="input-group">
+                <h4>2. Profitability Ratios</h4>
+                \[ \text{Net Margin} = \frac{\text{Net Income}}{\text{Revenue}} \times 100 \]
+                <p>Shows % of revenue remaining as profit after all expenses</p>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="ratioAnalysis"></canvas>
+                <p class="chart-caption">Comparative Ratio Analysis Over Time</p>
+            </div>
+        </div>
+    </div>
+
+<script>
+// Derivatives Controller with Detailed Explanations
+class DerivativesAnalysis {
+    constructor() {
+        this.chart = null;
+        this.initEventListeners();
+        this.updateVolatilitySurface();
+    }
+
+    initEventListeners() {
+        const inputs = ['stockPrice', 'strikePrice', 'volatility'];
+        inputs.forEach(id => {
+            document.getElementById(id).addEventListener('input', () => {
+                this.updateVolatilitySurface();
+            });
+        });
+    }
+
+    blackScholes(S, K, T=1, r=0.02, sigma) {
+        const d1 = (Math.log(S/K) + (r + sigma**2/2)*T) / (sigma*Math.sqrt(T));
+        const d2 = d1 - sigma*Math.sqrt(T);
+        return {
+            call: S * this.CND(d1) - K * Math.exp(-r*T) * this.CND(d2),
+            delta: this.CND(d1)
+        };
+    }
+
+    updateVolatilitySurface() {
+        const S = parseFloat(document.getElementById('stockPrice').value);
+        const K = parseFloat(document.getElementById('strikePrice').value);
+        const sigma = parseFloat(document.getElementById('volatility').value)/100;
+        
+        const strikes = Array.from({length: 20}, (_, i) => S * (0.7 + i*0.03));
+        const volatilities = Array.from({length: 20}, (_, i) => 0.1 + i*0.01);
+        
+        const data = strikes.map(k => 
+            volatilities.map(v => this.blackScholes(S, k, 1, 0.02, v).call)
+        );
+
+        if(this.chart) this.chart.destroy();
+        
+        this.chart = new Chart(document.getElementById('volatilitySurface'), {
+            type: 'surface',
+            data: {
+                labels: strikes.map(k => k.toFixed(0)),
+                datasets: [{
+                    label: 'Option Premium',
+                    data: data,
+                    borderColor: '#3498db',
+                    backgroundColor: 'rgba(52, 152, 219, 0.3)'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {display: false},
+                    title: {display: true, text: '3D Volatility Surface'}
+                },
+                scales: {
+                    x: {title: 'Strike Price'},
+                    y: {title: 'Volatility'},
+                    z: {title: 'Option Price'}
+                }
+            }
+        });
+    }
+}
+
+// Initialize Application
+const derivatives = new DerivativesAnalysis();
+
+function showModule(moduleId) {
+    document.querySelectorAll('.module').forEach(m => m.style.display = 'none');
+    document.getElementById(moduleId).style.display = 'block';
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Financial Analytics Platform</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --background-color: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: var(--background-color);
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .nav-tab {
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .module {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .theory-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .chart-container {
+            height: 600px;
+            margin: 30px 0;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="nav-tabs">
+        <div class="nav-tab active" onclick="showModule('derivatives')">Derivatives</div>
+        <div class="nav-tab" onclick="showModule('portfolio')">Portfolio Management</div>
+        <div class="nav-tab" onclick="showModule('financial-reporting')">Financial Reporting</div>
+    </div>
+
+    <!-- Derivatives Module -->
+    <div class="module" id="derivatives">
+        <div class="theory-section">
+            <h2>Option Pricing and Risk Management</h2>
+            <p>Options are financial derivatives that give the holder the right, but not obligation, to buy/sell assets at predetermined prices. The Black-Scholes model revolutionized options pricing:</p>
+            <div class="formula-box">
+                \[ C = S_0N(d_1) - Ke^{-rT}N(d_2) \]
+                \[ d_1 = \frac{\ln(S_0/K) + (r + \sigma^2/2)T}{\sigma\sqrt{T}} \]
+                \[ d_2 = d_1 - \sigma\sqrt{T} \]
+                <p>Where:
+                <br>C = Call option price
+                <br>P = Put option price
+                <br>S₀ = Current stock price
+                <br>K = Strike price
+                <br>r = Risk-free rate
+                <br>T = Time to expiration
+                <br>σ = Volatility
+                <br>N() = Cumulative distribution function
+                </p>
+            </div>
+        </div>
+
+        <div class="calculator-grid">
+            <div class="input-group">
+                <label>Stock Price ($): <input type="number" id="stockPrice" value="100"></label>
+                <input type="range" id="stockRange" min="50" max="200" value="100">
+            </div>
+            <div class="input-group">
+                <label>Strike Price ($): <input type="number" id="strikePrice" value="100"></label>
+                <input type="range" id="strikeRange" min="50" max="150" value="100">
+            </div>
+            <div class="input-group">
+                <label>Volatility (%): <input type="number" id="volatility" value="20"></label>
+                <input type="range" id="volRange" min="5" max="100" value="20">
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="optionsChart"></canvas>
+        </div>
+
+        <div class="theory-section">
+            <h3>Option Greeks</h3>
+            <p>Greeks measure sensitivity of option prices to various parameters:</p>
+            <div class="calculator-grid">
+                <div>
+                    <h4>Delta (Δ)</h4>
+                    \[ \Delta = \frac{\partial C}{\partial S} \]
+                    <p>Measures price sensitivity to underlying asset</p>
+                </div>
+                <div>
+                    <h4>Gamma (Γ)</h4>
+                    \[ \Gamma = \frac{\partial^2 C}{\partial S^2} \]
+                    <p>Measures rate of change of delta</p>
+                </div>
+                <div>
+                    <h4>Theta (Θ)</h4>
+                    \[ \Theta = \frac{\partial C}{\partial t} \]
+                    <p>Measures time decay effect</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Management Module -->
+    <div class="module" id="portfolio" style="display:none;">
+        <div class="theory-section">
+            <h2>Modern Portfolio Theory</h2>
+            <p>MPT emphasizes diversification to optimize risk-return tradeoff. The efficient frontier shows optimal portfolios:</p>
+            <div class="formula-box">
+                \[ \sigma_p = \sqrt{\sum_{i=1}^n w_i^2\sigma_i^2 + \sum_{i\neq j} w_iw_j\sigma_i\sigma_j\rho_{ij}} \]
+                <p>Where:
+                <br>σₚ = Portfolio volatility
+                <br>wᵢ = Asset weight
+                <br>σᵢ = Asset volatility
+                <br>ρᵢⱼ = Correlation between assets
+                </p>
+            </div>
+        </div>
+
+        <div class="calculator-grid">
+            <div class="input-group">
+                <label>Asset 1 Return (%): <input type="number" id="ret1" value="8"></label>
+                <label>Asset 1 Volatility (%): <input type="number" id="vol1" value="15"></label>
+            </div>
+            <div class="input-group">
+                <label>Asset 2 Return (%): <input type="number" id="ret2" value="4"></label>
+                <label>Asset 2 Volatility (%): <input type="number" id="vol2" value="5"></label>
+            </div>
+            <div class="input-group">
+                <label>Correlation: <input type="number" id="corr" value="0.3" step="0.1" min="-1" max="1"></label>
+                <input type="range" id="corrRange" min="-1" max="1" step="0.1" value="0.3">
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="efficientFrontier"></canvas>
+        </div>
+
+        <div class="theory-section">
+            <h3>Capital Asset Pricing Model (CAPM)</h3>
+            <div class="formula-box">
+                \[ E(R_i) = R_f + \beta_i(E(R_m) - R_f) \]
+                <p>Where:
+                <br>β = Systematic risk measure
+                <br>Rf = Risk-free rate
+                <br>E(Rm) = Expected market return
+                </p>
+            </div>
+            <div class="calculator-grid">
+                <div class="input-group">
+                    <label>Beta Coefficient: <input type="number" id="beta" value="1.2"></label>
+                </div>
+                <div class="input-group">
+                    <label>Market Return (%): <input type="number" id="marketRet" value="8"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Financial Reporting Module -->
+    <div class="module" id="financial-reporting" style="display:none;">
+        <div class="theory-section">
+            <h2>Financial Statement Analysis</h2>
+            <p>Key financial statements provide crucial information for analysis:</p>
+            <div class="calculator-grid">
+                <div>
+                    <h4>Income Statement</h4>
+                    <p>Revenue - Expenses = Net Income</p>
+                    \[ \text{Net Margin} = \frac{\text{Net Income}}{\text{Revenue}} \]
+                </div>
+                <div>
+                    <h4>Balance Sheet</h4>
+                    <p>Assets = Liabilities + Equity</p>
+                    \[ \text{Debt/Equity} = \frac{\text{Total Liabilities}}{\text{Shareholders' Equity}} \]
+                </div>
+                <div>
+                    <h4>Cash Flow Statement</h4>
+                    <p>Operating + Investing + Financing = Δ Cash</p>
+                    \[ \text{FCF} = \text{Operating CF} - \text{CapEx} \]
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator-grid">
+            <div class="input-group">
+                <label>Revenue ($M): <input type="number" id="revenue" value="500"></label>
+            </div>
+            <div class="input-group">
+                <label>COGS ($M): <input type="number" id="cogs" value="200"></label>
+            </div>
+            <div class="input-group">
+                <label>Total Assets ($M): <input type="number" id="assets" value="1000"></label>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="financialRatios"></canvas>
+        </div>
+
+        <div class="theory-section">
+            <h3>DuPont Analysis</h3>
+            <div class="formula-box">
+                \[ ROE = \frac{\text{Net Income}}{\text{Equity}} = \text{Profit Margin} \times \text{Asset Turnover} \times \text{Equity Multiplier} \]
+                \[ = \left(\frac{\text{Net Income}}{\text{Sales}}\right) \times \left(\frac{\text{Sales}}{\text{Assets}}\right) \times \left(\frac{\text{Assets}}{\text{Equity}}\right) \]
+            </div>
+            <div class="calculator-grid">
+                <div class="input-group">
+                    <label>Net Income ($M): <input type="number" id="netIncome" value="50"></label>
+                </div>
+                <div class="input-group">
+                    <label>Total Equity ($M): <input type="number" id="equity" value="400"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+// Derivatives Module Implementation
+class DerivativesCalculator {
+    constructor() {
+        this.chart = null;
+        this.init();
+    }
+
+    init() {
+        document.querySelectorAll('#derivatives input').forEach(input => {
+            input.addEventListener('input', () => this.updateChart());
+        });
+        this.updateChart();
+    }
+
+    blackScholes(S, K, T=1, r=0.02, sigma) {
+        const d1 = (Math.log(S/K) + (r + sigma**2/2)*T) / (sigma*Math.sqrt(T));
+        const d2 = d1 - sigma*Math.sqrt(T);
+        return S * this.CND(d1) - K * Math.exp(-r*T) * this.CND(d2);
+    }
+
+    CND(x) {
+        // Cumulative normal distribution approximation
+        const a1 = 0.31938153, a2 = -0.356563782, a3 = 1.781477937;
+        const a4 = -1.821255978, a5 = 1.330274429;
+        const L = Math.abs(x);
+        const K = 1 / (1 + 0.2316419 * L);
+        let cnd = 1 - 1 / Math.sqrt(2*Math.PI) * Math.exp(-L*L/2) * 
+            (a1*K + a2*K**2 + a3*K**3 + a4*K**4 + a5*K**5);
+        return x < 0 ? 1 - cnd : cnd;
+    }
+
+    updateChart() {
+        const S = parseFloat(document.getElementById('stockPrice').value);
+        const K = parseFloat(document.getElementById('strikePrice').value);
+        const sigma = parseFloat(document.getElementById('volatility').value)/100;
+
+        const strikes = Array.from({length: 20}, (_, i) => K * (0.5 + i/20));
+        const prices = strikes.map(k => this.blackScholes(S, k, 1, 0.02, sigma));
+
+        if(this.chart) this.chart.destroy();
+        this.chart = new Chart(document.getElementById('optionsChart'), {
+            type: 'line',
+            data: {
+                labels: strikes.map(k => k.toFixed(2)),
+                datasets: [{
+                    label: 'Call Option Prices',
+                    data: prices,
+                    borderColor: '#3498db',
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {title: {display: true, text: 'Strike Price ($)'}},
+                    y: {title: {display: true, text: 'Option Price ($)'}}
+                }
+            }
+        });
+    }
+}
+
+// Portfolio Management Implementation
+class PortfolioManager {
+    constructor() {
+        this.chart = null;
+        this.init();
+    }
+
+    init() {
+        document.querySelectorAll('#portfolio input').forEach(input => {
+            input.addEventListener('input', () => this.updateChart());
+        });
+        this.updateChart();
+    }
+
+    calculateFrontier() {
+        const ret1 = parseFloat(document.getElementById('ret1').value)/100;
+        const vol1 = parseFloat(document.getElementById('vol1').value)/100;
+        const ret2 = parseFloat(document.getElementById('ret2').value)/100;
+        const vol2 = parseFloat(document.getElementById('vol2').value)/100;
+        const corr = parseFloat(document.getElementById('corr').value);
+
+        const portfolios = [];
+        for(let w = 0; w <= 1; w += 0.01) {
+            const ret = w*ret1 + (1-w)*ret2;
+            const vol = Math.sqrt(
+                (w**2 * vol1**2) + 
+                ((1-w)**2 * vol2**2) + 
+                2*w*(1-w)*vol1*vol2*corr
+            );
+            portfolios.push({x: vol*100, y: ret*100});
+        }
+
+        return portfolios;
+    }
+
+    updateChart() {
+        const data = this.calculateFrontier();
+        
+        if(this.chart) this.chart.destroy();
+        this.chart = new Chart(document.getElementById('efficientFrontier'), {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Efficient Frontier',
+                    data: data,
+                    borderColor: '#2ecc71',
+                    backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                    showLine: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {title: {display: true, text: 'Risk (Volatility %)'}},
+                    y: {title: {display: true, text: 'Return (%)'}}
+                }
+            }
+        });
+    }
+}
+
+// Financial Reporting Implementation
+class FinancialReporting {
+    constructor() {
+        this.chart = null;
+        this.init();
+    }
+
+    init() {
+        document.querySelectorAll('#financial-reporting input').forEach(input => {
+            input.addEventListener('input', () => this.updateChart());
+        });
+        this.updateChart();
+    }
+
+    calculateRatios() {
+        const revenue = parseFloat(document.getElementById('revenue').value);
+        const netIncome = parseFloat(document.getElementById('netIncome').value);
+        const assets = parseFloat(document.getElementById('assets').value);
+        const equity = parseFloat(document.getElementById('equity').value);
+
+        return {
+            netMargin: (netIncome / revenue) * 100,
+            roe: (netIncome / equity) * 100,
+            assetTurnover: revenue / assets
+        };
+    }
+
+    updateChart() {
+        const ratios = this.calculateRatios();
+        
+        if(this.chart) this.chart.destroy();
+        this.chart = new Chart(document.getElementById('financialRatios'), {
+            type: 'bar',
+            data: {
+                labels: ['Net Margin (%)', 'ROE (%)', 'Asset Turnover'],
+                datasets: [{
+                    label: 'Financial Ratios',
+                    data: [ratios.netMargin, ratios.roe, ratios.assetTurnover],
+                    backgroundColor: ['#3498db', '#2ecc71', '#e74c3c']
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {beginAtZero: true}
+                }
+            }
+        });
+    }
+}
+
+// Application Initialization
+const derivatives = new DerivativesCalculator();
+const portfolio = new PortfolioManager();
+const financials = new FinancialReporting();
+
+function showModule(moduleId) {
+    document.querySelectorAll('.module').forEach(m => m.style.display = 'none');
+    document.getElementById(moduleId).style.display = 'block';
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+}
+
+MathJax = {
+    tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+};
+</script>
+</body>
+</html>
